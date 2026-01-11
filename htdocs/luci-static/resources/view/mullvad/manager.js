@@ -30,14 +30,14 @@ return view.extend({
 				} catch(e) {
 					return {
 						connected: false,
-						error: 'Failed to parse status'
+						error: _('Failed to parse status')
 					};
 				}
 			})
 			.catch(function(err) {
 				return {
 					connected: false,
-					error: 'Failed to get status: ' + err.message
+					error: _('Failed to get status: ') + err.message
 				};
 			});
 	},
@@ -87,7 +87,7 @@ return view.extend({
 
 		return fs.exec('/usr/bin/mullvad-fetch-servers.sh', []).then(function(res) {
 			if (res.code !== 0) {
-				throw new Error('Script failed with code ' + res.code);
+				throw new Error(_('Script failed with code ') + res.code);
 			}
 			return fs.read('/tmp/mullvad_servers.json');
 		}).then(function(data) {
@@ -180,7 +180,7 @@ return view.extend({
 		s.addremove = false;
 
 		// Get current server from UCI
-		var currentHostname = 'None';
+		var currentHostname = _('None');
 		var currentPeerSection = null;
 		var networkSections = uci.sections('network');
 		for (var i = 0; i < networkSections.length; i++) {
@@ -188,7 +188,7 @@ return view.extend({
 			if (section['.type'] === 'wireguard_MullvadWG' ||
 			    (section['.type'].indexOf('wireguard_') === 0)) {
 				currentPeerSection = section;
-				currentHostname = section.description || 'Unknown';
+				currentHostname = section.description || _('Unknown');
 				break;
 			}
 		}
@@ -207,7 +207,7 @@ return view.extend({
 		servers.forEach(function(server) {
 			var label = server.country + ' - ' + server.city + ' - ' + server.hostname;
 			if (server.owned) {
-				label += ' (Mullvad Owned)';
+				label += ' (' + _('Mullvad Owned') + ')';
 			} else {
 				label += ' (' + server.provider + ')';
 			}
@@ -483,7 +483,7 @@ return view.extend({
 			serverInfo.port
 		]).then(function(res) {
 			if (res.code !== 0) {
-				throw new Error('Script failed: ' + (res.stderr || 'Unknown error'));
+				throw new Error(_('Script failed: ') + (res.stderr || _('Unknown error')));
 			}
 			ui.hideModal();
 			ui.addNotification(null, E('p', _('Configuration updated. Reloading interface...')), 'info');

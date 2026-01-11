@@ -12,6 +12,15 @@ LUCI_DESCRIPTION:=LuCI web interface for managing Mullvad WireGuard VPN servers
 LUCI_DEPENDS:=+luci-base +luci-proto-wireguard +wireguard-tools +curl +jsonfilter
 LUCI_PKGARCH:=all
 
-include ../../luci.mk
+include $(TOPDIR)/feeds/luci/luci.mk
+
+define Package/luci-app-mullvad/postinst
+#!/bin/sh
+[ -n "$${IPKG_INSTROOT}" ] || {
+	chmod +x /usr/bin/mullvad-*.sh 2>/dev/null
+	/etc/init.d/rpcd restart
+}
+exit 0
+endef
 
 # call BuildPackage - OpenWrt buildroot signature
