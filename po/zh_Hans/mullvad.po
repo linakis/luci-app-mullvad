@@ -1,0 +1,190 @@
+# Chinese (Simplified) translation for luci-app-mullvad
+# Copyright (C) 2025
+# This file is distributed under the same license as the luci-app-mullvad package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: luci-app-mullvad\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-06 15:30+0800\n"
+"PO-Revision-Date: 2025-01-06 15:30+0800\n"
+"Last-Translator: \n"
+"Language-Team: Chinese (Simplified)\n"
+"Language: zh_Hans\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Fetching Server List"
+msgstr "获取服务器列表"
+
+msgid "Downloading latest Mullvad server list..."
+msgstr "正在下载最新的 Mullvad 服务器列表..."
+
+msgid "Failed to fetch server list: "
+msgstr "获取服务器列表失败："
+
+msgid "Mullvad WireGuard Manager"
+msgstr "Mullvad WireGuard 管理器"
+
+msgid "Manage your Mullvad WireGuard VPN server connection. Select a server, configure caching, and monitor connection status."
+msgstr "管理您的 Mullvad WireGuard VPN 服务器连接。选择服务器、配置缓存并监控连接状态。"
+
+msgid "Connection Status"
+msgstr "连接状态"
+
+msgid "Server Selection"
+msgstr "服务器选择"
+
+msgid "Current Server"
+msgstr "当前服务器"
+
+msgid "Select New Server"
+msgstr "选择新服务器"
+
+msgid "Choose a Mullvad WireGuard server. Format: Country - City - Hostname (Provider)"
+msgstr "选择 Mullvad WireGuard 服务器。格式：国家 - 城市 - 主机名 (提供商)"
+
+msgid "-- Select Server --"
+msgstr "-- 选择服务器 --"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "Enable Server List Caching"
+msgstr "启用服务器列表缓存"
+
+msgid "Cache the server list locally to reduce API calls and improve loading speed"
+msgstr "在本地缓存服务器列表以减少 API 调用并提高加载速度"
+
+msgid "Cache Time-to-Live"
+msgstr "缓存有效期"
+
+msgid "How long (in seconds) to keep cached server data before refreshing. Default: 86400 (24 hours)"
+msgstr "缓存服务器数据的保留时间（秒）。默认：86400（24小时）"
+
+msgid "Settings saved successfully"
+msgstr "设置保存成功"
+
+msgid "Failed to save settings: "
+msgstr "保存设置失败："
+
+msgid "Refresh Server List"
+msgstr "刷新服务器列表"
+
+msgid "Save & Apply"
+msgstr "保存并应用"
+
+msgid "Connected"
+msgstr "已连接"
+
+msgid "Disconnected"
+msgstr "已断开"
+
+msgid "Current Status"
+msgstr "当前状态"
+
+msgid "Connection"
+msgstr "连接"
+
+msgid "Not configured"
+msgstr "未配置"
+
+msgid "Endpoint"
+msgstr "端点"
+
+msgid "N/A"
+msgstr "不适用"
+
+msgid "Latest Handshake"
+msgstr "最近握手"
+
+msgid "Never"
+msgstr "从未"
+
+msgid "Transfer (RX / TX)"
+msgstr "传输 (接收 / 发送)"
+
+msgid "Server list refreshed successfully. Reloading page..."
+msgstr "服务器列表刷新成功，正在重新加载页面..."
+
+msgid "Failed to refresh: "
+msgstr "刷新失败："
+
+msgid "Invalid server selection"
+msgstr "无效的服务器选择"
+
+msgid "Failed to save: "
+msgstr "保存失败："
+
+msgid "Confirm Server Change"
+msgstr "确认更换服务器"
+
+msgid "Are you sure you want to switch to the following server?"
+msgstr "您确定要切换到以下服务器吗？"
+
+msgid "Hostname: "
+msgstr "主机名："
+
+msgid "IP Address: "
+msgstr "IP 地址："
+
+msgid "Port: "
+msgstr "端口："
+
+msgid "Note: Your VPN connection will be interrupted briefly during the switch."
+msgstr "注意：切换期间您的 VPN 连接将短暂中断。"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Apply"
+msgstr "应用"
+
+msgid "Please select a server first"
+msgstr "请先选择一个服务器"
+
+msgid "Applying Configuration"
+msgstr "正在应用配置"
+
+msgid "Updating WireGuard configuration..."
+msgstr "正在更新 WireGuard 配置..."
+
+msgid "Configuration updated. Reloading interface..."
+msgstr "配置已更新，正在重新加载接口..."
+
+msgid "Server changed successfully. Verifying connection..."
+msgstr "服务器更换成功，正在验证连接..."
+
+msgid "Failed to apply server change: "
+msgstr "应用服务器更改失败："
+
+msgid "Grant access to Mullvad WireGuard Manager"
+msgstr "授予 Mullvad WireGuard 管理器访问权限"
+
+msgid "None"
+msgstr "无"
+
+msgid "Unknown"
+msgstr "未知"
+
+msgid "XHR request timed out"
+msgstr "请求超时"
+
+msgid "Failed to parse status"
+msgstr "解析状态失败"
+
+msgid "Failed to get status: "
+msgstr "获取状态失败："
+
+msgid "Script failed with code "
+msgstr "脚本执行失败，错误码："
+
+msgid "Script failed: "
+msgstr "脚本执行失败："
+
+msgid "Unknown error"
+msgstr "未知错误"
+
+msgid "Mullvad Owned"
+msgstr "Mullvad 自有"
