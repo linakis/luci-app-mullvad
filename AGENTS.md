@@ -15,7 +15,7 @@ The application follows the standard OpenWrt/LuCI package structure:
 1. **Frontend (JavaScript)**: `htdocs/luci-static/resources/view/mullvad/manager.js`
    - Single-page LuCI view using the LuCI JavaScript framework
    - Manages UI state, server selection, and status polling
-   - Communicates with backend via shell script execution through `fs.exec()`
+   - Communicates with backend via shell script execution through `fs.exec_direct()`
    - Uses UCI for configuration management via LuCI's `uci` module
 
 2. **Backend (Shell Scripts)**: `root/usr/bin/mullvad-*.sh`
@@ -48,6 +48,12 @@ This logic is implemented in `mullvad-apply-server.sh` (`auto_detect_interface()
 **Safe Configuration Changes**: The app stages UCI changes without immediately reloading the network. LuCI's save/apply mechanism handles the actual network reload, preventing partial configuration states.
 
 **Status Polling**: Frontend polls status every 30 seconds using `getStatus()` → `mullvad-get-status.sh` → `wg show`.
+
+**Script Execution Method**: The frontend uses `fs.exec_direct()` instead of `fs.exec()` to execute backend shell scripts:
+- `fs.exec()` uses ubus RPC (`file.exec` method) which may not be available or may return "UnsupportedError" on some OpenWrt configurations
+- `fs.exec_direct()` uses the CGI endpoint (`/cgi-bin/cgi-exec`) which has broader compatibility
+- Return format: `fs.exec_direct()` returns a raw string (stdout), while `fs.exec()` returns `{code, stdout, stderr}`
+- Error handling: `fs.exec_direct()` throws exceptions on script failure, eliminating the need for manual exit code checking
 
 ## Building and Testing
 

@@ -23,10 +23,10 @@ return view.extend({
 	},
 
 	getStatus: function() {
-		return fs.exec('/usr/bin/mullvad-get-status.sh', [])
+		return fs.exec_direct('/usr/bin/mullvad-get-status.sh', [])
 			.then(function(res) {
 				try {
-					return JSON.parse(res.stdout || '{}');
+					return JSON.parse(res || '{}');
 				} catch(e) {
 					return {
 						connected: false,
@@ -85,10 +85,8 @@ return view.extend({
 			E('p', { 'class': 'spinning' }, _('Downloading latest Mullvad server list...'))
 		]);
 
-		return fs.exec('/usr/bin/mullvad-fetch-servers.sh', []).then(function(res) {
-			if (res.code !== 0) {
-				throw new Error('Script failed with code ' + res.code);
-			}
+		return fs.exec_direct('/usr/bin/mullvad-fetch-servers.sh', []).then(function(res) {
+			// exec_direct throws on error, so if we're here it succeeded
 			return fs.read('/tmp/mullvad_servers.json');
 		}).then(function(data) {
 			ui.hideModal();
@@ -476,15 +474,13 @@ return view.extend({
 			E('p', { 'class': 'spinning' }, _('Updating WireGuard configuration...'))
 		]);
 
-		return fs.exec('/usr/bin/mullvad-apply-server.sh', [
+		return fs.exec_direct('/usr/bin/mullvad-apply-server.sh', [
 			serverInfo.hostname,
 			serverInfo.public_key,
 			serverInfo.ipv4,
 			serverInfo.port
 		]).then(function(res) {
-			if (res.code !== 0) {
-				throw new Error('Script failed: ' + (res.stderr || 'Unknown error'));
-			}
+			// exec_direct throws on error, so if we're here it succeeded
 			ui.hideModal();
 			ui.addNotification(null, E('p', _('Configuration updated. Reloading interface...')), 'info');
 
@@ -492,8 +488,8 @@ return view.extend({
 			var wgInterface = uci.get('mullvad', 'config', 'wireguard_interface') || 'MullvadWG';
 
 			// Reload WireGuard interface using ifdown/ifup
-			return fs.exec('/sbin/ifdown', [wgInterface]).then(function() {
-				return fs.exec('/sbin/ifup', [wgInterface]);
+			return fs.exec_direct('/sbin/ifdown', [wgInterface]).then(function() {
+				return fs.exec_direct('/sbin/ifup', [wgInterface]);
 			});
 		}).then(function() {
 			button.classList.remove('spinning');
