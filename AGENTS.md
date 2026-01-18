@@ -54,6 +54,7 @@ This logic is implemented in `mullvad-apply-server.sh` (`auto_detect_interface()
 - `fs.exec_direct()` uses the CGI endpoint (`/cgi-bin/cgi-exec`) which has broader compatibility
 - Return format: `fs.exec_direct()` returns a raw string (stdout), while `fs.exec()` returns `{code, stdout, stderr}`
 - Error handling: `fs.exec_direct()` throws exceptions on script failure, eliminating the need for manual exit code checking
+- **ACL Requirement**: To use `fs.exec_direct()`, the ACL must grant `"cgi-io": [ "exec" ]` permission in both read and write sections, plus individual script execution permissions under the `file` section
 
 ## Building and Testing
 
